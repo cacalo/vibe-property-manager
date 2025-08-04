@@ -24,7 +24,9 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "src/_redirects"
+
             ],
             "styles": [
               "node_modules/leaflet/dist/leaflet.css",
