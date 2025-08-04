@@ -54,6 +54,8 @@
 - ✅ **NEW**: Enhanced expense form with "Who Paid" selection
 - ✅ **NEW**: "Select from Existing Expenses" buttons in invoice form
 - ✅ **NEW**: Automatic filtering of uncharged/uncredited expenses
+- ✅ **NEW**: Print-friendly invoice styling with professional layout
+- ✅ **NEW**: Prominent "Print Invoice" button for easy access
 
 ### 🔧 Technical Features
 - ✅ InvoiceService with reactive signals
@@ -65,6 +67,9 @@
 - ✅ **NEW**: Expense tracking by invoice ID to prevent double-charging
 - ✅ **NEW**: Smart expense type assignment based on payer and category
 - ✅ **NEW**: Enhanced form validation and user experience
+- ✅ **NEW**: CSS print media queries for black & white printer optimization
+- ✅ **NEW**: Professional print header with company branding
+- ✅ **NEW**: Print-optimized layout without screen UI elements
 
 ## 🚀 Workflow Enhancement Summary:
 
@@ -83,6 +88,14 @@
 5. **NEW**: System shows only uncredited tenant-paid expenses for deductible section
 6. When invoice is saved, selected expenses are marked as included (via invoiceId)
 
+### **NEW**: Print-Friendly Invoice Workflow:
+1. Navigate to any invoice detail page
+2. Click the prominent "Print Invoice" button
+3. Browser print dialog opens with professional invoice layout
+4. Invoice automatically formatted for black & white printing
+5. Screen elements (buttons, navigation) hidden in print view
+6. Professional company header appears only in print version
+
 ## 🚀 Next Possible Enhancements:
 - [ ] PDF invoice generation
 - [ ] Email integration with templates
@@ -94,3 +107,5 @@
 - [ ] **NEW**: Expense selection dialog with filtering and search
 - [ ] **NEW**: Bulk expense import functionality
 - [ ] **NEW**: Expense approval workflow
+- [ ] **NEW**: Custom company branding for print header
+- [ ] **NEW**: Invoice template variations for different property types

@@ -28,6 +28,18 @@ import { Invoice, InvoiceStatus } from '../../models/property.model';
   template: `
     @if (invoice()) {
       <div class="invoice-container">
+        <!-- Print-only company header -->
+        <div class="print-header">
+          <div class="company-info">
+            <h1 class="company-name">Property Management Services</h1>
+            <p class="company-details">Professional Property Management & Rental Services</p>
+          </div>
+          <div class="invoice-title">
+            <h2>INVOICE</h2>
+            <p class="invoice-number">{{ invoice()!.invoiceNumber }}</p>
+          </div>
+        </div>
+
         <!-- Header -->
         <div class="header">
           <button mat-icon-button routerLink="/invoices">
@@ -40,6 +52,10 @@ import { Invoice, InvoiceStatus } from '../../models/property.model';
             </mat-chip>
           </div>
           <div class="header-actions">
+            <button mat-raised-button color="primary" (click)="printInvoice()" class="print-button">
+              <mat-icon>print</mat-icon>
+              Print Invoice
+            </button>
             <button mat-icon-button [matMenuTriggerFor]="actionMenu">
               <mat-icon>more_vert</mat-icon>
             </button>
@@ -54,10 +70,6 @@ import { Invoice, InvoiceStatus } from '../../models/property.model';
                   Mark as Paid
                 </button>
               }
-              <button mat-menu-item (click)="printInvoice()">
-                <mat-icon>print</mat-icon>
-                Print Invoice
-              </button>
               <button mat-menu-item (click)="emailInvoice()">
                 <mat-icon>email</mat-icon>
                 Email Invoice
@@ -231,6 +243,11 @@ import { Invoice, InvoiceStatus } from '../../models/property.model';
       max-width: 1000px;
       margin: 0 auto;
       padding: var(--spacing-lg);
+    }
+
+    /* Hide print header on screen */
+    .print-header {
+      display: none;
     }
 
     .header {
@@ -465,6 +482,274 @@ import { Invoice, InvoiceStatus } from '../../models/property.model';
         flex-direction: column;
         align-items: stretch;
         gap: var(--spacing-xs);
+      }
+    }
+
+    /* Print Styles */
+    .print-button {
+      margin-right: var(--spacing-sm);
+    }
+
+    @media print {
+      /* Page setup */
+      @page {
+        margin: 0.75in;
+        size: A4;
+      }
+
+      /* Hide non-essential elements */
+      .header button,
+      .header-actions,
+      .mat-card-header,
+      mat-card-header,
+      .print-button {
+        display: none !important;
+      }
+
+      /* Show print header */
+      .print-header {
+        display: block !important;
+        text-align: center;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 3px solid #000;
+      }
+
+      .company-info {
+        margin-bottom: 15px;
+      }
+
+      .company-name {
+        font-size: 28px;
+        font-weight: bold;
+        margin: 0;
+        color: #000 !important;
+      }
+
+      .company-details {
+        font-size: 14px;
+        margin: 5px 0 0 0;
+        color: #000 !important;
+      }
+
+      .invoice-title {
+        margin-top: 15px;
+      }
+
+      .invoice-title h2 {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0;
+        color: #000 !important;
+        letter-spacing: 2px;
+      }
+
+      .invoice-number {
+        font-size: 16px;
+        margin: 5px 0 0 0;
+        color: #000 !important;
+        font-weight: bold;
+      }
+
+      /* Main container adjustments */
+      .invoice-container {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        font-family: 'Times New Roman', serif;
+        color: #000;
+        background: white;
+      }
+
+      /* Header styling for print */
+      .header {
+        margin-bottom: 20px;
+        border-bottom: 2px solid #000;
+        padding-bottom: 10px;
+      }
+
+      .header-info h1 {
+        color: #000 !important;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      /* Remove material design cards for print */
+      mat-card,
+      .mat-card,
+      .info-card,
+      .breakdown-card,
+      .payment-card,
+      .notes-card {
+        box-shadow: none !important;
+        border: none !important;
+        background: white !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .mat-card-content {
+        padding: 0 !important;
+        margin: 10px 0 !important;
+      }
+
+      /* Invoice content layout */
+      .invoice-content {
+        gap: 20px;
+      }
+
+      /* Information grid for print */
+      .info-grid {
+        display: block;
+        margin-bottom: 20px;
+      }
+
+      .info-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 2px 0;
+        border-bottom: 1px dotted #ccc;
+        page-break-inside: avoid;
+      }
+
+      .info-item .label {
+        font-weight: bold;
+        color: #000;
+        min-width: 120px;
+      }
+
+      .info-item .value {
+        color: #000;
+        text-align: right;
+      }
+
+      /* Breakdown section styling */
+      .breakdown-section {
+        margin: 20px 0;
+      }
+
+      .breakdown-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 3px 0;
+        border-bottom: 1px dotted #ddd;
+        page-break-inside: avoid;
+      }
+
+      .breakdown-item.expense {
+        padding-left: 20px;
+        font-size: 12px;
+        border-bottom: none;
+      }
+
+      .breakdown-item.subtotal {
+        border-top: 1px solid #000;
+        border-bottom: 1px solid #000;
+        font-weight: bold;
+        padding: 8px 0;
+        margin-top: 10px;
+      }
+
+      .breakdown-item.gross {
+        background-color: #f5f5f5 !important;
+        border: 1px solid #000;
+        padding: 8px;
+        font-weight: bold;
+        margin: 10px 0;
+      }
+
+      .breakdown-item.final {
+        background-color: #000 !important;
+        color: white !important;
+        border: 2px solid #000;
+        padding: 12px;
+        font-size: 16px;
+        font-weight: bold;
+        margin: 15px 0;
+      }
+
+      /* Subsection headers */
+      .breakdown-subsection h4 {
+        color: #000;
+        font-weight: bold;
+        font-size: 14px;
+        margin: 15px 0 5px 0;
+        text-transform: uppercase;
+        border-bottom: 1px solid #000;
+        padding-bottom: 2px;
+      }
+
+      /* Table styling for expenses */
+      mat-table,
+      .mat-table {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #000;
+      }
+
+      .mat-header-cell,
+      .mat-cell {
+        border: 1px solid #000 !important;
+        padding: 8px !important;
+        color: #000 !important;
+        background: white !important;
+      }
+
+      .mat-header-cell {
+        background-color: #f0f0f0 !important;
+        font-weight: bold !important;
+      }
+
+      /* Status chips */
+      mat-chip,
+      .mat-chip {
+        background-color: white !important;
+        color: #000 !important;
+        border: 1px solid #000 !important;
+        font-weight: bold;
+      }
+
+      /* Ensure proper page breaks */
+      .invoice-header-section,
+      .breakdown-card {
+        page-break-inside: avoid;
+      }
+
+      /* Force colors for better print contrast */
+      * {
+        -webkit-print-color-adjust: exact !important;
+        color-adjust: exact !important;
+      }
+
+      /* Remove any hover effects */
+      *:hover {
+        background-color: inherit !important;
+        color: inherit !important;
+      }
+
+      /* Typography adjustments */
+      h1, h2, h3, h4, h5, h6 {
+        color: #000 !important;
+      }
+
+      /* Ensure text is readable */
+      .label,
+      .value,
+      span,
+      div {
+        color: #000 !important;
+      }
+
+      /* Hide material icons in print */
+      mat-icon {
+        display: none !important;
+      }
+
+      /* Payment status for print */
+      .overdue {
+        color: #000 !important;
+        font-weight: bold !important;
+        text-decoration: underline !important;
       }
     }
   `]
