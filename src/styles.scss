@@ -35,5 +35,90 @@ body {
 }
 /* You can add global styles to this file, and also import other style files */
 
+/* Global CSS Variables for consistent theming */
+:root {
+  /* Primary Brand Colors */
+  --primary-color: #1976d2;
+  --primary-light: #42a5f5;
+  --primary-dark: #1565c0;
+  
+  /* Success/Profit Colors */
+  --success-color: #4caf50;
+  --success-light: #81c784;
+  --success-dark: #2e7d32;
+  --success-background: #e8f5e8;
+  
+  /* Error/Loss Colors */
+  --error-color: #f44336;
+  --error-light: #e57373;
+  --error-dark: #c62828;
+  --error-background: #ffebee;
+  
+  /* Warning/Medium Colors */
+  --warning-color: #ff9800;
+  --warning-light: #ffb74d;
+  --warning-dark: #f57c00;
+  --warning-background: #fff3e0;
+  
+  /* Purple/Loss Colors (for negative values) */
+  --purple-color: #9c27b0;
+  --purple-light: #ba68c8;
+  --purple-dark: #7b1fa2;
+  --purple-background: #f3e5f5;
+  
+  /* Text Colors */
+  --text-primary: #333;
+  --text-secondary: #666;
+  --text-tertiary: #999;
+  --text-disabled: #ccc;
+  
+  /* Background Colors */
+  --background-primary: #ffffff;
+  --background-secondary: #f5f5f5;
+  --background-tertiary: #f9f9f9;
+  --background-paper: #fafafa;
+  
+  /* Border Colors */
+  --border-light: #e0e0e0;
+  --border-medium: #bdbdbd;
+  --border-dark: #757575;
+  
+  /* Shadow Colors */
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --shadow-medium: rgba(0, 0, 0, 0.12);
+  --shadow-dark: rgba(0, 0, 0, 0.2);
+  
+  /* Spacing Variables */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+  
+  /* Border Radius */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  
+  /* Font Sizes */
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 24px;
+  --font-size-xxl: 32px;
+  
+  /* Font Weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-normal: 0.2s ease-in-out;
+  --transition-slow: 0.3s ease-in-out;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

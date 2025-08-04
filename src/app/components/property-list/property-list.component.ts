@@ -281,20 +281,20 @@ import { Property, PropertyType } from '../../models/property.model';
       height: 24px;
     }
 
-    .type-chip.apartment { background-color: #e3f2fd; color: #1976d2; }
-    .type-chip.house { background-color: #e8f5e8; color: #388e3c; }
-    .type-chip.condo { background-color: #fff3e0; color: #f57c00; }
-    .type-chip.townhouse { background-color: #f3e5f5; color: #7b1fa2; }
+    .type-chip.apartment { background-color: #e3f2fd; color: var(--primary-color); }
+    .type-chip.house { background-color: var(--success-background); color: #388e3c; }
+    .type-chip.condo { background-color: var(--warning-background); color: var(--warning-dark); }
+    .type-chip.townhouse { background-color: var(--purple-background); color: var(--purple-dark); }
     .type-chip.studio { background-color: #fce4ec; color: #c2185b; }
-    .type-chip.other { background-color: #f5f5f5; color: #616161; }
+    .type-chip.other { background-color: var(--background-secondary); color: #616161; }
 
     .status-chip {
-      font-size: 12px;
+      font-size: var(--font-size-xs);
       height: 24px;
     }
 
     .status-chip.active {
-      background-color: #e8f5e8;
+      background-color: var(--success-background);
       color: #388e3c;
     }
 

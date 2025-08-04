@@ -182,11 +182,11 @@ import { Revenue, Expense } from '../../models/property.model';
 
     .dashboard-header h1 {
       margin: 0;
-      color: #1976d2;
+      color: var(--primary-color);
     }
 
     .metrics-grid {
-      margin-bottom: 32px;
+      margin-bottom: var(--spacing-xl);
     }
 
     .metric-card {
@@ -200,7 +200,7 @@ import { Revenue, Expense } from '../../models/property.model';
     .metric-content {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: var(--spacing-md);
       width: 100%;
     }
 
@@ -208,23 +208,23 @@ import { Revenue, Expense } from '../../models/property.model';
       font-size: 48px;
       width: 48px;
       height: 48px;
-      color: #666;
+      color: var(--text-secondary);
     }
 
     .metric-icon.income {
-      color: #4caf50;
+      color: var(--success-color);
     }
 
     .metric-icon.expense {
-      color: #f44336;
+      color: var(--error-color);
     }
 
     .metric-icon.profit {
-      color: #4caf50;
+      color: var(--success-color);
     }
 
     .metric-icon.loss {
-      color: #f44336;
+      color: var(--error-color);
     }
 
     .metric-details {
@@ -238,20 +238,20 @@ import { Revenue, Expense } from '../../models/property.model';
     }
 
     .metric-value.profit {
-      color: #4caf50;
+      color: var(--success-color);
     }
 
     .metric-value.loss {
-      color: #f44336;
+      color: var(--error-color);
     }
 
     .metric-label {
-      color: #666;
-      font-size: 14px;
+      color: var(--text-secondary);
+      font-size: var(--font-size-sm);
     }
 
     .properties-section {
-      margin-bottom: 32px;
+      margin-bottom: var(--spacing-xl);
     }
 
     .section-header {
@@ -268,23 +268,23 @@ import { Revenue, Expense } from '../../models/property.model';
     .properties-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 16px;
+      gap: var(--spacing-md);
     }
 
     .property-card {
       cursor: pointer;
-      transition: transform 0.2s ease-in-out;
+      transition: var(--transition-normal);
     }
 
     .property-card:hover {
       transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+      box-shadow: 0 4px 8px var(--shadow-medium);
     }
 
     .property-metrics {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: var(--spacing-sm);
     }
 
     .property-metric {
@@ -294,25 +294,25 @@ import { Revenue, Expense } from '../../models/property.model';
     }
 
     .property-metric .label {
-      font-weight: 500;
-      color: #666;
+      font-weight: var(--font-weight-medium);
+      color: var(--text-secondary);
     }
 
     .property-metric .value {
-      font-weight: bold;
+      font-weight: var(--font-weight-bold);
     }
 
     .property-metric .value.profit {
-      color: #4caf50;
+      color: var(--success-color);
     }
 
     .property-metric .value.loss {
-      color: #f44336;
+      color: var(--error-color);
     }
 
     .empty-state {
       text-align: center;
-      padding: 48px 24px;
+      padding: var(--spacing-xxl) var(--spacing-lg);
       grid-column: 1 / -1;
     }
 
@@ -320,28 +320,28 @@ import { Revenue, Expense } from '../../models/property.model';
       font-size: 64px;
       width: 64px;
       height: 64px;
-      color: #ccc;
-      margin-bottom: 16px;
+      color: var(--text-disabled);
+      margin-bottom: var(--spacing-md);
     }
 
     .empty-state h3 {
-      margin: 16px 0 8px 0;
-      color: #666;
+      margin: var(--spacing-md) 0 var(--spacing-sm) 0;
+      color: var(--text-secondary);
     }
 
     .empty-state p {
-      color: #999;
-      margin-bottom: 24px;
+      color: var(--text-tertiary);
+      margin-bottom: var(--spacing-lg);
     }
 
     .quick-actions h2 {
-      margin-bottom: 16px;
+      margin-bottom: var(--spacing-md);
     }
 
     .actions-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
+      gap: var(--spacing-md);
     }
 
     .actions-grid button {
@@ -349,17 +349,17 @@ import { Revenue, Expense } from '../../models/property.model';
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: var(--spacing-sm);
     }
 
     @media (max-width: 768px) {
       .dashboard-container {
-        padding: 16px;
+        padding: var(--spacing-md);
       }
 
       .dashboard-header {
         flex-direction: column;
-        gap: 16px;
+        gap: var(--spacing-md);
         align-items: stretch;
       }
 

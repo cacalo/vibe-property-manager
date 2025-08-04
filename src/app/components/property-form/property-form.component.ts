@@ -280,32 +280,32 @@ import { Property, PropertyType } from '../../models/property.model';
 
     .header h1 {
       margin: 0;
-      color: #1976d2;
+      color: var(--primary-color);
     }
 
     .form-section {
-      margin-bottom: 32px;
+      margin-bottom: var(--spacing-xl);
     }
 
     .form-section h3 {
-      margin: 0 0 16px 0;
-      color: #666;
+      margin: 0 0 var(--spacing-md) 0;
+      color: var(--text-secondary);
       font-size: 1.1em;
-      border-bottom: 1px solid #eee;
-      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: var(--spacing-sm);
     }
 
     .section-description {
-      margin: 0 0 16px 0;
-      color: #666;
+      margin: 0 0 var(--spacing-md) 0;
+      color: var(--text-secondary);
       font-size: 0.9em;
       line-height: 1.4;
     }
 
     .form-row {
       display: flex;
-      gap: 16px;
-      margin-bottom: 16px;
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-md);
     }
 
     .full-width {
@@ -313,24 +313,24 @@ import { Property, PropertyType } from '../../models/property.model';
     }
 
     .half-width {
-      width: calc(50% - 8px);
+      width: calc(50% - var(--spacing-sm));
     }
 
     .status-description {
-      margin: 8px 0 0 0;
-      color: #666;
+      margin: var(--spacing-sm) 0 0 0;
+      color: var(--text-secondary);
       font-size: 0.9em;
     }
 
     .geocoding-controls {
       justify-content: flex-start;
       align-items: center;
-      gap: 12px;
-      margin-top: 8px;
+      gap: var(--spacing-sm);
+      margin-top: var(--spacing-sm);
     }
 
     .geocoding-spinner {
-      color: #1976d2;
+      color: var(--primary-color);
       
       mat-spinner {
         display: inline-block;
@@ -338,16 +338,16 @@ import { Property, PropertyType } from '../../models/property.model';
     }
 
     .geocoding-success {
-      color: #4caf50;
+      color: var(--success-color);
     }
 
     ::ng-deep .success-snackbar {
-      background-color: #4caf50 !important;
+      background-color: var(--success-color) !important;
       color: white !important;
     }
 
     mat-card {
-      margin-bottom: 24px;
+      margin-bottom: var(--spacing-lg);
     }
 
     mat-card-actions {

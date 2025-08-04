@@ -165,26 +165,26 @@ interface PropertyMarkerData {
 
     .legend {
       h4 {
-        margin: 0 0 12px 0;
-        color: #666;
-        font-size: 14px;
-        font-weight: 500;
+        margin: 0 0 var(--spacing-sm) 0;
+        color: var(--text-secondary);
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-medium);
       }
     }
 
     .legend-items {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 12px;
+      gap: var(--spacing-sm);
     }
 
     .legend-item {
       display: flex;
       align-items: center;
-      gap: 8px;
-      padding: 8px;
-      border-radius: 4px;
-      background-color: #f9f9f9;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-sm);
+      border-radius: var(--border-radius-sm);
+      background-color: var(--background-tertiary);
     }
 
     .legend-color {
@@ -192,29 +192,29 @@ interface PropertyMarkerData {
       height: 20px;
       border-radius: 50%;
       border: 2px solid white;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      box-shadow: 0 1px 3px var(--shadow-dark);
 
-      &.high { background-color: #4caf50; }
-      &.medium { background-color: #ff9800; }
-      &.low { background-color: #f44336; }
-      &.loss { background-color: #9c27b0; }
+      &.high { background-color: var(--success-color); }
+      &.medium { background-color: var(--warning-color); }
+      &.low { background-color: var(--error-color); }
+      &.loss { background-color: var(--purple-color); }
     }
 
     .profit-chip {
       margin-left: auto;
       
-      &.high { background-color: #e8f5e8; color: #2e7d32; }
-      &.medium { background-color: #fff3e0; color: #f57c00; }
-      &.low { background-color: #ffebee; color: #c62828; }
-      &.loss { background-color: #f3e5f5; color: #7b1fa2; }
+      &.high { background-color: var(--success-background); color: var(--success-dark); }
+      &.medium { background-color: var(--warning-background); color: var(--warning-dark); }
+      &.low { background-color: var(--error-background); color: var(--error-dark); }
+      &.loss { background-color: var(--purple-background); color: var(--purple-dark); }
     }
 
     .map-wrapper {
       flex: 1;
       position: relative;
-      border-radius: 8px;
+      border-radius: var(--border-radius-md);
       overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 8px var(--shadow-medium);
     }
 
     .map {
