@@ -9,6 +9,7 @@ import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { PropertyService } from './services/property.service';
+import { InvoiceService } from './services/invoice.service';
 
 @Component({
   selector: 'app-root',
@@ -29,6 +30,7 @@ import { PropertyService } from './services/property.service';
 })
 export class App {
   protected readonly propertyService = inject(PropertyService);
+  protected readonly invoiceService = inject(InvoiceService);
   private readonly snackBar = inject(MatSnackBar);
   protected readonly router = inject(Router);
 
@@ -42,6 +44,8 @@ export class App {
   );
   protected readonly revenuesCount = computed(() => this.propertyService.revenues().length);
   protected readonly expensesCount = computed(() => this.propertyService.expenses().length);
+  protected readonly invoicesCount = computed(() => this.invoiceService.invoices().length);
+  protected readonly pendingInvoicesCount = computed(() => this.invoiceService.pendingInvoices().length);
 
   protected loadSampleData(): void {
     try {
@@ -63,6 +67,14 @@ export class App {
 
   protected navigateToAddExpense(): void {
     this.router.navigate(['/expenses/new']);
+  }
+
+  protected navigateToAddInvoice(): void {
+    this.router.navigate(['/invoices/new']);
+  }
+
+  protected navigateToInvoices(): void {
+    this.router.navigate(['/invoices']);
   }
 
   protected navigateToProperty(propertyId: string): void {

@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { PropertyService } from './property.service';
-import { Property, Revenue, Expense, PropertyType, RevenueType, ExpenseCategory } from '../models/property.model';
+import { Property, Revenue, Expense, PropertyType, RevenueType, ExpenseCategory, ExpenseType } from '../models/property.model';
 
 export interface ImportResult {
   success: boolean;
@@ -389,7 +389,8 @@ export class ImportService {
       date: new Date(data.date),
       description: data.description || '',
       vendor: data.vendor || '',
-      paymentMethod: data.paymentMethod || 'other'
+      paymentMethod: data.paymentMethod || 'other',
+      expenseType: ExpenseType.CHARGEABLE_TO_TENANT // Default to chargeable for imported expenses
     };
 
     return expense;

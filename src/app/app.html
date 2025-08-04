@@ -61,7 +61,7 @@
       
       <!-- Financial Menu -->
       <button mat-button [matMenuTriggerFor]="financialMenu" 
-              [class.active-link]="router.url.includes('/revenue') || router.url.includes('/expenses')"
+              [class.active-link]="router.url.includes('/revenue') || router.url.includes('/expenses') || router.url.includes('/invoices')"
               matTooltip="Financial Management">
         <mat-icon>account_balance</mat-icon>
         <span class="nav-label">Financial</span>
@@ -72,6 +72,20 @@
           <mat-icon>account_balance</mat-icon>
           <span>Financial Management</span>
         </div>
+        <mat-divider></mat-divider>
+        
+        <!-- Invoices Section -->
+        <div class="menu-section-header">Invoices</div>
+        <button mat-menu-item (click)="navigateToAddInvoice()">
+          <mat-icon>add_circle</mat-icon>
+          <span>Create Invoice</span>
+        </button>
+        <button mat-menu-item (click)="navigateToInvoices()">
+          <mat-icon matBadge="{{ pendingInvoicesCount() }}" matBadgeColor="warn" 
+                   [matBadgeHidden]="pendingInvoicesCount() === 0">receipt</mat-icon>
+          <span>View All Invoices ({{ invoicesCount() }})</span>
+        </button>
+        
         <mat-divider></mat-divider>
         
         <!-- Revenue Section -->
@@ -137,6 +151,13 @@
       <a mat-button routerLink="/map" routerLinkActive="active-link" matTooltip="Property Map View">
         <mat-icon>map</mat-icon>
         <span class="nav-label">Map</span>
+      </a>
+      
+      <!-- Invoices -->
+      <a mat-button routerLink="/invoices" routerLinkActive="active-link" matTooltip="Invoice Management">
+        <mat-icon matBadge="{{ pendingInvoicesCount() }}" matBadgeColor="warn" 
+                 [matBadgeHidden]="pendingInvoicesCount() === 0">receipt_long</mat-icon>
+        <span class="nav-label">Invoices</span>
       </a>
       
       <!-- Reports -->

@@ -12,7 +12,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { PropertyService } from '../../services/property.service';
-import { Expense, ExpenseCategory } from '../../models/property.model';
+import { Expense, ExpenseCategory, ExpenseType } from '../../models/property.model';
 
 @Component({
   selector: 'app-expense-form',
@@ -87,6 +87,20 @@ import { Expense, ExpenseCategory } from '../../models/property.model';
                   </mat-error>
                 </mat-form-field>
 
+                <mat-form-field appearance="outline" class="half-width">
+                  <mat-label>Who Paid This Expense?</mat-label>
+                  <mat-select formControlName="paidBy">
+                    <mat-option value="landlord">Landlord/Owner (me)</mat-option>
+                    <mat-option value="tenant">Tenant</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="expenseForm.get('paidBy')?.hasError('required')">
+                    Please specify who paid this expense
+                  </mat-error>
+                  <mat-hint>Choose who actually paid for this expense</mat-hint>
+                </mat-form-field>
+              </div>
+
+              <div class="form-row">
                 <mat-form-field appearance="outline" class="half-width">
                   <mat-label>Amount</mat-label>
                   <input matInput type="number" formControlName="amount" 
@@ -289,6 +303,7 @@ export class ExpenseFormComponent implements OnInit {
     this.expenseForm = this.formBuilder.group({
       propertyId: ['', [Validators.required]],
       category: ['', [Validators.required]],
+      paidBy: ['', [Validators.required]],
       amount: [0, [Validators.required, Validators.min(0.01)]],
       date: [new Date(), [Validators.required]],
       description: ['', [Validators.required]],
@@ -324,6 +339,7 @@ export class ExpenseFormComponent implements OnInit {
       this.expenseForm.patchValue({
         propertyId: expense.propertyId,
         category: expense.category,
+        paidBy: this.determinePaidBy(expense.expenseType),
         amount: expense.amount,
         date: new Date(expense.date),
         description: expense.description,
@@ -336,6 +352,17 @@ export class ExpenseFormComponent implements OnInit {
       this.snackBar.open('Expense entry not found', 'Close', { duration: 3000 });
       this.goBack();
     }
+  }
+
+  private determinePaidBy(expenseType: ExpenseType): string {
+    // If it's a tenant-paid expense type, return 'tenant'
+    if (expenseType === ExpenseType.TENANT_PAID_MAINTENANCE ||
+        expenseType === ExpenseType.TENANT_PAID_REPAIRS ||
+        expenseType === ExpenseType.TENANT_PAID_UTILITIES) {
+      return 'tenant';
+    }
+    // Otherwise, assume landlord paid
+    return 'landlord';
   }
 
   protected onSubmit(): void {
@@ -358,7 +385,8 @@ export class ExpenseFormComponent implements OnInit {
         vendor: formValue.vendor || undefined,
         paymentMethod: formValue.paymentMethod || undefined,
         receiptNumber: formValue.receiptNumber || undefined,
-        notes: formValue.notes || undefined
+        notes: formValue.notes || undefined,
+        expenseType: this.getExpenseType(formValue.paidBy, formValue.category)
       };
 
       try {
@@ -385,5 +413,57 @@ export class ExpenseFormComponent implements OnInit {
     } else {
       this.router.navigate(['/expenses']);
     }
+  }
+
+  private getExpenseType(paidBy: string, category: ExpenseCategory): ExpenseType {
+    // If tenant paid, it's a deductible expense (we'll credit them on invoice)
+    if (paidBy === 'tenant') {
+      switch (category) {
+        case ExpenseCategory.MAINTENANCE:
+          return ExpenseType.TENANT_PAID_MAINTENANCE;
+        case ExpenseCategory.REPAIRS:
+          return ExpenseType.TENANT_PAID_REPAIRS;
+        case ExpenseCategory.UTILITIES:
+          return ExpenseType.TENANT_PAID_UTILITIES;
+        default:
+          return ExpenseType.TENANT_PAID_MAINTENANCE; // Default for tenant-paid
+      }
+    }
+    
+    // If landlord paid, determine if it's chargeable to tenant or landlord expense
+    if (paidBy === 'landlord') {
+      // These are typically landlord responsibilities (not chargeable to tenant)
+      if (category === ExpenseCategory.PROPERTY_TAX || 
+          category === ExpenseCategory.INSURANCE ||
+          category === ExpenseCategory.MORTGAGE ||
+          category === ExpenseCategory.PROPERTY_MANAGEMENT) {
+        switch (category) {
+          case ExpenseCategory.PROPERTY_TAX:
+            return ExpenseType.LANDLORD_PROPERTY_TAX;
+          case ExpenseCategory.INSURANCE:
+            return ExpenseType.LANDLORD_INSURANCE;
+          case ExpenseCategory.PROPERTY_MANAGEMENT:
+            return ExpenseType.LANDLORD_MANAGEMENT;
+          default:
+            return ExpenseType.LANDLORD_PROPERTY_TAX;
+        }
+      }
+      
+      // For other categories paid by landlord, map to appropriate landlord expense type
+      switch (category) {
+        case ExpenseCategory.MAINTENANCE:
+          return ExpenseType.LANDLORD_MAINTENANCE;
+        case ExpenseCategory.REPAIRS:
+          return ExpenseType.LANDLORD_REPAIRS;
+        case ExpenseCategory.UTILITIES:
+          return ExpenseType.LANDLORD_UTILITIES;
+        default:
+          // These could be chargeable to tenant depending on circumstances
+          return ExpenseType.CHARGEABLE_TO_TENANT;
+      }
+    }
+    
+    // Default fallback
+    return ExpenseType.LANDLORD_MAINTENANCE;
   }
 }

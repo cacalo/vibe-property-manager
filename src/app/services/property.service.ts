@@ -1,5 +1,5 @@
 import { Injectable, signal, computed } from '@angular/core';
-import { Property, Revenue, Expense, PropertyFinancials, PropertyType, RevenueType, ExpenseCategory } from '../models/property.model';
+import { Property, Revenue, Expense, PropertyFinancials, PropertyType, RevenueType, ExpenseCategory, ExpenseType } from '../models/property.model';
 
 @Injectable({
   providedIn: 'root'
@@ -330,7 +330,8 @@ export class PropertyService {
         date: new Date('2023-02-15'),
         category: ExpenseCategory.MAINTENANCE,
         description: 'Plumbing repair',
-        vendor: 'ABC Plumbing'
+        vendor: 'ABC Plumbing',
+        expenseType: ExpenseType.LANDLORD_MAINTENANCE
       });
 
       this.addExpense({
@@ -339,7 +340,8 @@ export class PropertyService {
         date: new Date('2023-03-10'),
         category: ExpenseCategory.PROPERTY_TAX,
         description: 'Quarterly property tax',
-        vendor: 'City Tax Office'
+        vendor: 'City Tax Office',
+        expenseType: ExpenseType.LANDLORD_PROPERTY_TAX
       });
     }
   }
