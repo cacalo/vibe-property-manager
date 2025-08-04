@@ -21,12 +21,11 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
+              "src/_redirects",
               {
                 "glob": "**/*",
                 "input": "public"
-              },
-              "src/_redirects"
-
+              }
             ],
             "styles": [
               "node_modules/leaflet/dist/leaflet.css",
