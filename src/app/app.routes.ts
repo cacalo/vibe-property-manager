@@ -11,6 +11,10 @@ export const routes: Routes = [
     loadComponent: () => import('./components/property-list/property-list.component').then(m => m.PropertyListComponent)
   },
   {
+    path: 'map',
+    loadComponent: () => import('./components/property-map/property-map.component').then(m => m.PropertyMapComponent)
+  },
+  {
     path: 'properties/new',
     loadComponent: () => import('./components/property-form/property-form.component').then(m => m.PropertyFormComponent)
   },

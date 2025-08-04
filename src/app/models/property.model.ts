@@ -11,6 +11,9 @@ export interface Property {
   tenantName?: string;
   leaseStartDate?: Date;
   leaseEndDate?: Date;
+  // Map coordinates
+  latitude?: number;
+  longitude?: number;
 }
 
 export enum PropertyType {

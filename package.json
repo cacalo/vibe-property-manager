@@ -28,6 +28,8 @@
     "@angular/material": "^20.1.4",
     "@angular/platform-browser": "^20.1.0",
     "@angular/router": "^20.1.0",
+    "@types/leaflet": "^1.9.20",
+    "leaflet": "^1.9.4",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },

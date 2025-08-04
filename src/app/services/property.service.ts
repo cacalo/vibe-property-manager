@@ -134,6 +134,15 @@ export class PropertyService {
     return this._expenses().filter(e => e.propertyId === propertyId);
   }
 
+  // Convenience methods for map component
+  getPropertyRevenues(propertyId: string): Revenue[] {
+    return this.getRevenuesForProperty(propertyId);
+  }
+
+  getPropertyExpenses(propertyId: string): Expense[] {
+    return this.getExpensesForProperty(propertyId);
+  }
+
   // Financial Analytics
   getPropertyFinancials(propertyId: string): PropertyFinancials | null {
     const property = this.getProperty(propertyId);
